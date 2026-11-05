@@ -10,7 +10,7 @@ set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 
 require_config() {
-  [ -n "$SITE_DOMAIN" ] || die "SITE_DOMAIN in kit.env ist leer. Beispiel: SITE_DOMAIN=ordination-muster.at"
+  [ -n "$SITE_DOMAIN" ] || die "SITE_DOMAIN in kit.env ist leer. Beispiel: SITE_DOMAIN=musterbetrieb.at"
   [ -n "$DEPLOY_HOST" ] || die "DEPLOY_HOST in kit.env ist leer. Beispiel: DEPLOY_HOST=root@203.0.113.10"
 }
 

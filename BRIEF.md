@@ -35,7 +35,10 @@ Der Agent füllt diese Datei während des Onboardings aus (`docs/onboarding.md`)
 
 - Logo und Farben:
 - Gewählte Richtung:
-- Vorbilder und was daran gefällt:
+
+### Was aus den Beispielen folgt
+
+Je Vorbild eine Zeile: Datei oder Link, was daran gefällt, was die Website davon übernimmt (Aufbau, Farben, Schrift, Tonfall).
 
 ## Rechtliches
 

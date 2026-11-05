@@ -20,12 +20,19 @@ die() {
   exit 1
 }
 
-SITE_SLUG="${SITE_SLUG:-homepage}"
+# setup.sh sets KIT_FORCE_* to address an older installation after the settings changed.
+SITE_SLUG="${KIT_FORCE_SLUG:-${SITE_SLUG:-homepage}}"
 case "$SITE_SLUG" in
   *[!a-z0-9-]* | -* | '') die "SITE_SLUG in kit.env darf nur Kleinbuchstaben, Ziffern und Bindestriche enthalten (aktuell: '$SITE_SLUG')." ;;
 esac
 
-PREVIEW_PORT="${PREVIEW_PORT:-4321}"
+SKILL_NAME="${KIT_FORCE_SKILL:-${SKILL_NAME:-$SITE_SLUG}}"
+case "$SKILL_NAME" in
+  *[!a-z0-9-]* | -* | '') die "SKILL_NAME in kit.env darf nur Kleinbuchstaben, Ziffern und Bindestriche enthalten (aktuell: '$SKILL_NAME')." ;;
+esac
+SKILL_TRIGGERS="${SKILL_TRIGGERS:-}"
+
+PREVIEW_PORT="${KIT_FORCE_PORT:-${PREVIEW_PORT:-4321}}"
 case "$PREVIEW_PORT" in
   *[!0-9]* | '') die "PREVIEW_PORT in kit.env muss eine Zahl sein (aktuell: '$PREVIEW_PORT')." ;;
 esac

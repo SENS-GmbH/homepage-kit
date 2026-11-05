@@ -1,11 +1,13 @@
 import type { SiteContent } from './types'
 
+// Placeholder texts of the template. They describe what belongs in each spot.
+// The agent replaces all of them during onboarding.
 export const en: SiteContent = {
   languageName: 'English',
   meta: {
-    title: 'Dr. Muster | General Practice in Vienna’s 1st District',
+    title: 'Musterbetrieb | Your offer in Vienna',
     description:
-      'General practice in central Vienna: check-ups, same-day appointments, vaccinations and home visits. Call 01 000 00 00 for an appointment.',
+      'Musterbetrieb in 1010 Vienna. One sentence on what you offer and who it is for. Call 01 000 00 00.',
   },
   ui: {
     skipLink: 'Skip to content',
@@ -27,9 +29,9 @@ export const en: SiteContent = {
   },
   notice: '',
   hero: {
-    eyebrow: 'General practice · 1010 Vienna',
-    headline: 'Your family doctor in the city centre.',
-    lead: 'Check-ups, acute complaints and ongoing care for the whole family. We arrange appointments by phone.',
+    eyebrow: 'Your trade · Your town',
+    headline: 'What you offer, in one sentence.',
+    lead: 'Two sentences on who your business is for and what sets it apart. The agent replaces this text with your own in the first conversation.',
     callLabel: 'Call',
     bookingLabel: 'Book an appointment online',
     directionsLabel: 'Get directions',
@@ -45,49 +47,41 @@ export const en: SiteContent = {
       sa: 'Saturday',
       su: 'Sunday',
     },
-    note: 'Please call ahead to arrange an appointment.',
+    note: 'Appointments outside these hours by arrangement.',
   },
   services: {
     heading: 'Services',
-    intro: 'We are your first point of contact for health questions and look after you over many years.',
+    intro: 'The main services of your business, each with one sentence on what customers get out of it.',
     items: [
       {
-        title: 'Health check-up',
-        text: 'Once a year we check your blood values, heart and circulation and take time to discuss the results with you.',
+        title: 'First service',
+        text: 'Describe in one sentence what customers get with this service.',
       },
       {
-        title: 'Same-day appointments',
-        text: 'If you have a fever, pain or an infection, call us and we will see you the same day.',
+        title: 'Second service',
+        text: 'Name the result, not the process. Visitors read the result first.',
       },
       {
-        title: 'Vaccinations',
-        text: 'We review your vaccination record, advise you on boosters that are due and vaccinate in the practice.',
+        title: 'Third service',
+        text: 'A concrete example says more than a general description.',
       },
       {
-        title: 'Chronic conditions',
-        text: 'For high blood pressure, diabetes or asthma we check your values regularly and adjust the treatment.',
-      },
-      {
-        title: 'Home visits',
-        text: 'If you cannot come to the practice, we visit you at home by arrangement.',
-      },
-      {
-        title: 'Prescriptions and referrals',
-        text: 'Order repeat prescriptions and referrals by phone and collect them on the next working day.',
+        title: 'Fourth service',
+        text: 'Four to eight services are enough. Nobody reads more on a home page.',
       },
     ],
   },
   about: {
-    heading: 'About the practice',
+    heading: 'About us',
     paragraphs: [
-      'Dr. Maria Muster has run the practice since 2015. After studying in Vienna she worked for several years in internal medicine at a Vienna hospital.',
-      'We want you to understand what we examine and why. That is why we plan enough time for every conversation.',
+      'Tell visitors who is behind the business, how long it has existed and what you do differently from others.',
+      'A second paragraph has room for your training, your team or what you pay particular attention to in your work.',
     ],
     facts: [
-      { label: 'Specialty', value: 'General medicine' },
-      { label: 'Insurance', value: 'All public insurers' },
+      { label: 'Founded', value: '2015' },
+      { label: 'Team', value: '4 people' },
       { label: 'Languages', value: 'German, English' },
-      { label: 'Access', value: 'Step-free with lift' },
+      { label: 'Access', value: 'Step-free' },
     ],
   },
   faq: {
@@ -95,19 +89,15 @@ export const en: SiteContent = {
     items: [
       {
         question: 'Do I need an appointment?',
-        answer: 'Yes. Please call first so that we can keep waiting times short. We see acute cases the same day.',
+        answer: 'Your answer goes here. The best questions for this section are the ones customers ask most often on the phone.',
       },
       {
-        question: 'What should I bring to my first appointment?',
-        answer: 'Bring your e-card, a list of your medication and any existing medical reports.',
+        question: 'What does it cost?',
+        answer: 'State prices or explain what the price depends on.',
       },
       {
-        question: 'Can I get a prescription without an appointment?',
-        answer: 'For repeat medication, yes. Order the prescription by phone and collect it on the next working day.',
-      },
-      {
-        question: 'What do I do outside opening hours?',
-        answer: 'In a life-threatening emergency call 144. The health advice line is available around the clock on 1450.',
+        question: 'What is the best way to reach you?',
+        answer: 'Say whether phone, email or a visit is the fastest way.',
       },
     ],
   },
@@ -123,16 +113,16 @@ export const en: SiteContent = {
     imprint: {
       slug: 'imprint',
       title: 'Imprint',
-      description: 'Imprint and legal disclosure of Dr. Muster’s practice.',
+      description: 'Imprint and legal disclosure of Musterbetrieb.',
       sections: [
         {
           heading: 'Media owner and service provider',
-          paragraphs: ['TODO: Add the full name, professional title, address, phone number and email address of the business.'],
+          paragraphs: ['TODO: Add the full name or company name, address, phone number and email address.'],
         },
         {
-          heading: 'Professional information',
+          heading: 'Company details',
           paragraphs: [
-            'TODO: Add chamber membership, supervisory authority, professional title with the awarding country and the applicable professional rules. For trade businesses add the commercial register number, register court, VAT number and trade authority instead.',
+            'TODO: Add the business purpose, commercial register number and register court, VAT number, competent authority and chamber or professional association, where applicable.',
           ],
         },
         {
@@ -159,9 +149,7 @@ export const en: SiteContent = {
         },
         {
           heading: 'Contacting us',
-          paragraphs: [
-            'TODO: Describe how phone and email enquiries are processed and how long they are kept. Please do not send us health data by email.',
-          ],
+          paragraphs: ['TODO: Describe how phone and email enquiries are processed and how long they are kept.'],
         },
         {
           heading: 'Your rights',

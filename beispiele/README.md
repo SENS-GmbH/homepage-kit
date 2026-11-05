@@ -1,20 +1,13 @@
 # Beispiele und Material
 
-Hier landet alles, was dem Agenten zeigt, wie die Website werden soll. Dateien können Sie per Chat schicken oder im Finder in diese Ordner ziehen. Der Agent fragt beim ersten Gespräch danach.
+Hier sammelt der Agent alles, was zeigt, wie die Website werden soll. Schicken Sie Beispiele einfach im Chat, der Agent legt sie in diese Ordner, sieht sie sich an und notiert in `BRIEF.md`, was er daraus mitnimmt. Sie können Dateien auch selbst im Finder hierher ziehen. Sagen Sie dem Agenten dann kurz Bescheid.
 
 ## `vorbilder/`
 
-Websites, die Ihnen gefallen. Der Agent übernimmt davon die Richtung, also Aufbau, Tonfall und Farbstimmung. Texte und Bilder fremder Websites kopiert er nicht.
-
-- Links mit einer Zeile dazu, was Ihnen gefällt, in `vorbilder/links.md`
-- Bildschirmfotos als PNG oder JPG
+Websites, die Ihnen gefallen, als Link oder Bildschirmfoto. Der Agent übernimmt davon die Richtung, also Aufbau, Farbstimmung und Tonfall. Texte und Bilder fremder Websites kopiert er nicht.
 
 ## `eigenes-material/`
 
-Dinge, die Ihnen gehören und die auf der Website erscheinen dürfen.
+Dinge, die Ihnen gehören und die auf der Website erscheinen dürfen: Logo, Fotos von Räumen, Team und Arbeit, vorhandene Texte.
 
-- Logo, am besten als SVG oder großes PNG
-- Fotos von Räumen, Team und Arbeit
-- Texte von einer bestehenden Website, einem Flyer oder einem Schild
-
-Legen Sie hier nur Bilder ab, an denen Sie die Rechte haben und auf denen alle abgebildeten Personen einverstanden sind.
+Schicken Sie nur Bilder, an denen Sie die Rechte haben und auf denen alle abgebildeten Personen einverstanden sind.

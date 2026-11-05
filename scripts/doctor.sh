@@ -6,7 +6,7 @@ source "$(dirname "${BASH_SOURCE[0]}")/lib.sh"
 
 SCRIPTS="$ROOT_DIR/scripts"
 
-info "Website: $SITE_SLUG"
+info "Website: $SITE_SLUG · Skill: /$SKILL_NAME"
 info "Ordner:  $ROOT_DIR"
 in_synced_folder && warn "Das Repo liegt in einem iCloud-synchronisierten Ordner. Verschiebe es nach ~/Developer."
 

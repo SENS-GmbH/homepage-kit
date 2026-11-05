@@ -13,7 +13,7 @@ function readKitEnv() {
     }
     for (const line of text.split('\n')) {
       const match = line.match(/^([A-Z_]+)=(.*)$/)
-      if (match) values[match[1]] = match[2].trim()
+      if (match) values[match[1]] = match[2].trim().replace(/^"(.*)"$/, '$1')
     }
   }
   return values

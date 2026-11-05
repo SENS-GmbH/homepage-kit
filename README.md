@@ -2,7 +2,7 @@
 
 Eine Vorlage für die Website eines kleinen Betriebs, die du per Chat pflegst. Du schreibst deinem OpenClaw auf Telegram, was sich ändern soll. Der Agent ändert die Website auf deinem Mac, du siehst das Ergebnis sofort in einer privaten Vorschau, und auf Zuruf veröffentlicht er sie auf deinem Server.
 
-Die Vorlage zeigt als Beispiel eine erfundene Ordination. Sie passt genauso für Handwerksbetriebe, Studios, Kanzleien oder Lokale.
+Die Vorlage ist für keine Branche festgelegt. Sie zeigt Platzhaltertexte eines erfundenen Betriebs, und der Agent ersetzt Inhalt und Gestaltung im ersten Gespräch durch deine eigenen.
 
 ## So hängt es zusammen
 
@@ -16,7 +16,7 @@ Telegram ──> OpenClaw ──> dieses Repo auf dem Mac
 
 - **Vorschau.** macOS startet einen Dev-Server beim Hochfahren und nach jedem Absturz neu. Tailscale macht ihn unter einer HTTPS-Adresse erreichbar, die nur deine eigenen Geräte öffnen können.
 - **Wächter.** OpenClaw prüft die Vorschau alle fünf Minuten und startet sie bei Bedarf neu.
-- **Skill.** OpenClaw bekommt einen Skill mit dem Kurznamen der Website, zum Beispiel `/homepage`.
+- **Skill.** OpenClaw bekommt einen Skill für diese Website. Seinen Namen und die Stichworte, bei denen er anspringt, legst du selbst fest.
 - **Website.** Statische Seiten mit Astro, auf Deutsch und Englisch, mit Impressum und Datenschutzerklärung. Keine Cookies, keine fremden Dienste.
 
 ## Voraussetzungen
@@ -40,45 +40,57 @@ Tailscale und OpenClaw sind beide optional. Ohne Tailscale läuft die Vorschau n
    cd DEIN-REPO
    ```
 
-3. Trag in `kit.env` einen Kurznamen ein, etwa `SITE_SLUG=ordination`. Er wird zum Namen des Skills.
-4. Starte das Setup:
+3. Starte das Setup:
 
    ```sh
    npm run setup
    ```
 
-Das Setup installiert die Abhängigkeiten, richtet den Vorschau-Dienst ein, gibt ihn über Tailscale frei und installiert Skill und Wächter in OpenClaw. Am Ende zeigt es die Adresse der Vorschau. Du kannst es jederzeit erneut ausführen.
+Das Setup stellt vier Fragen und trägt die Antworten in `kit.env` ein:
 
-Du kannst das auch OpenClaw überlassen:
+| Frage | Bedeutung |
+| --- | --- |
+| Kurzname der Website | Steht im Namen der macOS-Dienste und des Wächters, zum Beispiel `homepage` |
+| Name des Skills | Damit rufst du den Agenten im Chat auf. Aus `website` wird `/website` |
+| Stichworte | Wörter, bei denen der Skill auch ohne Schrägstrich-Befehl anspringt, zum Beispiel „Firmenwebsite, unsere Homepage“ |
+| Port der Vorschau | Jede Website auf demselben Mac braucht einen eigenen |
 
-> Klone https://github.com/DEIN-NAME/DEIN-REPO nach ~/Developer, trag in kit.env den Kurznamen ordination ein und führe im Repo `npm run setup` aus. Schick mir danach die Adresse der Vorschau.
+Danach installiert es die Abhängigkeiten, richtet den Vorschau-Dienst ein, gibt ihn über Tailscale frei und installiert Skill und Wächter in OpenClaw. Am Ende zeigt es die Adresse der Vorschau.
+
+Du kannst das Setup jederzeit erneut ausführen, auch um Skill-Namen, Stichworte oder Port zu ändern. Was unter den alten Namen lief, räumt es vorher weg.
+
+Du kannst das auch OpenClaw überlassen. Ein Agent übergibt die Antworten als Optionen:
+
+> Klone https://github.com/DEIN-NAME/DEIN-REPO nach ~/Developer und führe im Repo `npm run setup -- --slug homepage --skill website --triggers "Firmenwebsite, unsere Homepage"` aus. Schick mir danach die Adresse der Vorschau.
 
 ## Loslegen
 
-Schreib deinem OpenClaw:
+Schreib deinem OpenClaw, hier mit dem Skill-Namen `website`:
 
-> /ordination Leg los
+> /website Leg los
 
-Der Agent fragt zuerst nach Beispielen und Material und stellt dann Fragen zum Betrieb, immer nur wenige auf einmal. Die Antworten hält er in `BRIEF.md` fest. Danach baut er die erste Fassung und schickt dir die Adresse der Vorschau.
+Der Agent bittet zuerst um Beispiele und Material und stellt dann Fragen zum Betrieb, immer nur wenige auf einmal. Die Antworten hält er in `BRIEF.md` fest. Danach baut er die erste Fassung und schickt dir die Adresse der Vorschau.
 
 ### Beispiele und Material
 
-Schick dem Agenten per Chat, was du hast, oder zieh es im Finder in den Ordner `beispiele/`:
+Zeig dem Agenten, wie die Website aussehen soll. Schick ihm im Chat:
 
-- Links und Bildschirmfotos von Websites, die dir gefallen, nach `beispiele/vorbilder/`
-- Logo, Fotos und vorhandene Texte nach `beispiele/eigenes-material/`
+- Links und Bildschirmfotos von Websites, die dir gefallen
+- Logo, Fotos und vorhandene Texte
 
-Von Vorbildern übernimmt der Agent die Richtung, er kopiert sie nicht. Eigenes Material verwendet er direkt.
+Der Agent legt alles im Ordner `beispiele/` ab, sieht es sich an und notiert in `BRIEF.md`, was er daraus für Aufbau, Farben, Schrift und Tonfall mitnimmt. Von fremden Websites übernimmt er die Richtung, er kopiert sie nicht. Dein eigenes Material verwendet er direkt.
+
+Das geht jederzeit, nicht nur am Anfang. Ein Bildschirmfoto mit „so soll der Kopfbereich aussehen“ genügt.
 
 ### Im Alltag
 
-> /ordination Am Freitag haben wir ab jetzt bis 14 Uhr offen
+> /website Am Freitag haben wir ab jetzt bis 14 Uhr offen
 >
-> /ordination Wir sind von 3. bis 14. August auf Urlaub, Vertretung macht Dr. Beispiel
+> /website Wir haben von 3. bis 14. August Betriebsurlaub
 >
-> /ordination Hier ist unser neues Teamfoto
+> /website Hier ist unser neues Teamfoto
 >
-> /ordination Mach die letzte Änderung rückgängig
+> /website Mach die letzte Änderung rückgängig
 
 Jede Änderung wird ein eigener Git-Commit, deshalb lässt sich jede einzeln zurücknehmen.
 
@@ -93,8 +105,8 @@ Du brauchst einen Server mit Ubuntu oder Debian, auf den du dich per SSH-Schlüs
 1. Trag Domain und Server in `kit.env` ein:
 
    ```sh
-   SITE_DOMAIN=ordination-muster.at
-   DOMAIN_ALIASES=www.ordination-muster.at
+   SITE_DOMAIN=musterbetrieb.at
+   DOMAIN_ALIASES=www.musterbetrieb.at
    DEPLOY_HOST=root@203.0.113.10
    ```
 
@@ -110,7 +122,7 @@ Du brauchst einen Server mit Ubuntu oder Debian, auf den du dich per SSH-Schlüs
    npm run deploy
    ```
 
-Der Befehl baut die Website auf dem Mac, kopiert die Dateien auf den Server und startet dort Caddy. Caddy holt und erneuert das HTTPS-Zertifikat selbst. Im Chat genügt später `/ordination Veröffentlichen`.
+Der Befehl baut die Website auf dem Mac, kopiert die Dateien auf den Server und startet dort Caddy. Caddy holt und erneuert das HTTPS-Zertifikat selbst. Im Chat genügt später `/website Veröffentlichen`.
 
 ### Mit Coolify oder einer anderen Plattform
 
@@ -120,7 +132,7 @@ Das `Dockerfile` baut ein Image, das die Website auf Port 80 ausliefert. Verbind
 
 | Befehl | Wirkung |
 | --- | --- |
-| `npm run setup` | Richtet Vorschau, Tailscale-Freigabe, Skill und Wächter ein |
+| `npm run setup` | Fragt Namen und Port ab, richtet Vorschau, Tailscale-Freigabe, Skill und Wächter ein |
 | `npm run status` | Zeigt den Zustand aller Teile und die offenen Platzhalter |
 | `npm run check` | Prüft Typen, baut die Website und listet Platzhalter |
 | `npm run preview:check` | Prüft die Vorschau und startet sie bei Bedarf neu |
@@ -132,7 +144,7 @@ Das `Dockerfile` baut ein Image, das die Website auf Port 80 ausliefert. Verbind
 
 ## Mehrere Websites auf einem Mac
 
-Lege für jede Website ein eigenes Repo aus der Vorlage an und gib jedem in `kit.env` einen eigenen `SITE_SLUG` und einen eigenen `PREVIEW_PORT`. Dienste, Skills und Wächter tragen den Kurznamen im Namen und kommen sich nicht in die Quere.
+Lege für jede Website ein eigenes Repo aus der Vorlage an und gib jeder beim Setup einen eigenen Kurznamen, Skill-Namen und Port. Dienste, Skills und Wächter tragen diese Namen und kommen sich nicht in die Quere.
 
 ## Wenn etwas nicht geht
 
@@ -142,7 +154,7 @@ Lege für jede Website ein eigenes Repo aus der Vorlage an und gib jedem in `kit
 
 **Die Tailscale-Adresse öffnet sich nicht.** Das Gerät, von dem du zugreifst, muss im selben Tailnet angemeldet sein. Meldet `npm run share` einen Fehler, fehlen im Tailscale-Adminbereich MagicDNS oder die HTTPS-Zertifikate.
 
-**Port belegt.** Wähle in `kit.env` einen anderen `PREVIEW_PORT` und führe `npm run setup` erneut aus.
+**Port belegt.** Führe `npm run setup` erneut aus und nenne einen anderen Port.
 
 **Nach einem Node-Update startet die Vorschau nicht.** Führe `npm run setup` erneut aus, dann zeigt der Dienst wieder auf das aktuelle Node.
 
@@ -158,8 +170,7 @@ Lege für jede Website ein eigenes Repo aus der Vorlage an und gib jedem in `kit
 | `BRIEF.md` | Was über den Betrieb bekannt ist, vom Agenten gepflegt |
 | `beispiele/` | Vorbilder und eigenes Material |
 | `docs/onboarding.md` | Ablauf des ersten Gesprächs |
-| `docs/branchen/` | Hinweise für einzelne Branchen, bisher Ordinationen |
-| `kit.env` | Einstellungen: Kurzname, Port, Domain, Server |
+| `kit.env` | Einstellungen: Kurzname, Skill-Name, Stichworte, Port, Domain, Server |
 | `src/content/` | Alle Texte und Fakten der Website |
 | `src/styles/tokens.css` | Farben, Schriften, Abstände |
 | `scripts/` | Setup, Vorschau, OpenClaw, Veröffentlichung |

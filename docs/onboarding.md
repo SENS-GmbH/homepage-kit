@@ -10,22 +10,16 @@ Setze in `BRIEF.md` den Status auf `läuft`. Erkläre in zwei Sätzen, was jetzt
 
 Frag als Erstes danach, noch vor den Fragen zum Betrieb. Gutes Material beantwortet die Hälfte der späteren Fragen.
 
-- **Vorbilder.** Welche Websites gefallen Ihnen, und was genau daran? Links oder Bildschirmfotos genügen.
-- **Eigenes Material.** Logo, Fotos von Räumen und Team, Texte von einer bestehenden Website, einem Flyer oder dem Google-Profil.
+- **Vorbilder.** Welche Websites gefallen Ihnen, und was genau daran? Bitte schicken Sie Links oder Bildschirmfotos hier in den Chat.
+- **Eigenes Material.** Logo, Fotos von Räumen und Team, Texte von einer bestehenden Website, einem Flyer oder dem Google-Profil, ebenfalls hier in den Chat.
 
-Lege ab, was ankommt:
-
-| Was | Wohin |
-| --- | --- |
-| Links zu Vorbildern, je Link eine Zeile dazu, was daran gefällt | `beispiele/vorbilder/links.md` |
-| Bildschirmfotos von Vorbildern | `beispiele/vorbilder/` |
-| Logo, Fotos, eigene Texte | `beispiele/eigenes-material/` |
+Behandle alles, was ankommt, nach dem Abschnitt „Beispiele und Material“ in `AGENTS.md`.
 
 Gibt es eine bestehende Website, lies sie und übernimm die Fakten in `BRIEF.md`. Vermerke dort die Quelle und lass die Angaben bestätigen, denn alte Websites enthalten oft veraltete Zeiten und Nummern.
 
-Kommt nichts, mach ohne Material weiter und frag bei Schritt 4 noch einmal nach Fotos.
+Kommt nichts, mach ohne Material weiter und frag vor der ersten Fassung noch einmal nach Fotos.
 
-Erledigt, wenn die Auftraggeber Material geschickt oder gesagt haben, dass es keines gibt.
+Erledigt, wenn jedes geschickte Beispiel im Repo liegt und in `BRIEF.md` ausgewertet ist, oder die Auftraggeber gesagt haben, dass es keines gibt.
 
 ## 3. Fragen stellen
 
@@ -37,7 +31,7 @@ Geh die Blöcke der Reihe nach durch, höchstens drei Fragen pro Nachricht. Übe
 4. **Personen.** Wer arbeitet dort, mit welcher Ausbildung? Gibt es Fotos?
 5. **Häufige Fragen.** Welche Fragen stellen Kunden am Telefon am häufigsten? Daraus entsteht der FAQ-Bereich.
 6. **Sprache.** Sie oder Du? Braucht es Englisch oder eine andere Sprache? Wenn nein, entferne die Sprache in `src/content/index.ts`.
-7. **Gestaltung.** Gibt es ein Logo und feste Farben? Beschreibe auf Basis der Vorbilder zwei Richtungen in je einem Satz und lass wählen.
+7. **Gestaltung.** Gibt es ein Logo und feste Farben? Beschreibe auf Basis der ausgewerteten Vorbilder zwei Richtungen in je einem Satz und lass wählen. Ohne Vorbilder schlägst du zwei Richtungen vor, die zur Branche passen.
 8. **Rechtliches.** Angaben für das Impressum, Verantwortliche für den Datenschutz. Sag dazu, dass Impressum und Datenschutzerklärung vor der Veröffentlichung rechtlich geprüft werden sollten.
 9. **Domain und Server.** Gibt es schon eine Domain? Wo soll die Website laufen?
 
@@ -47,10 +41,11 @@ Erledigt, wenn jedes Feld in `BRIEF.md` einen Wert hat oder unter „Offene Punk
 
 1. Trage die Fakten in `src/content/business.ts` ein und wähle den passenden `schemaType`.
 2. Schreibe die Texte in `src/content/de.ts` und in jeder weiteren Sprache neu. Vom Beispielinhalt bleibt nichts stehen.
-3. Passe `src/styles/tokens.css` an die gewählte Richtung an. Prüfe den Kontrast jeder Textfarbe auf ihrem Hintergrund.
-4. Ersetze `public/favicon.svg` durch das Logo oder ein Zeichen in der Hauptfarbe.
-5. Lege Fotos aus `beispiele/eigenes-material/` in `src/assets/` ab und binde sie ein.
-6. Setze `demo` in `business.ts` auf `false`, sobald kein Beispielinhalt mehr übrig ist.
+3. Passe die Abschnitte an den Betrieb an. Was nicht passt, etwa Öffnungszeiten bei einem Betrieb ohne feste Zeiten, entfernst du. Was fehlt, ergänzt du mit eigenem Typ in `src/content/types.ts`.
+4. Setze die gewählte Richtung um: Farben, Schriften, Abstände und Radien in `src/styles/tokens.css`, den Aufbau in den Komponenten. Prüfe den Kontrast jeder Textfarbe auf ihrem Hintergrund.
+5. Ersetze `public/favicon.svg` durch das Logo oder ein Zeichen in der Hauptfarbe.
+6. Lege Fotos aus `beispiele/eigenes-material/` in `src/assets/` ab und binde sie ein.
+7. Setze `demo` in `business.ts` auf `false`, sobald kein Beispielinhalt mehr übrig ist.
 
 Erledigt, wenn `npm run check` besteht und `npm run todos` nur noch Platzhalter zeigt, die unter „Offene Punkte“ in `BRIEF.md` stehen.
 

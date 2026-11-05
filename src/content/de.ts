@@ -1,11 +1,13 @@
 import type { SiteContent } from './types'
 
+// Placeholder texts of the template. They describe what belongs in each spot.
+// The agent replaces all of them during onboarding.
 export const de: SiteContent = {
   languageName: 'Deutsch',
   meta: {
-    title: 'Ordination Dr. Muster | Allgemeinmedizin in 1010 Wien',
+    title: 'Musterbetrieb | Ihr Angebot in Wien',
     description:
-      'Hausärztliche Ordination in der Wiener Innenstadt: Vorsorge, Akutsprechstunde, Impfungen und Hausbesuche. Termine telefonisch unter 01 000 00 00.',
+      'Musterbetrieb in 1010 Wien. Hier steht in einem Satz, was Sie anbieten und für wen. Erreichbar unter 01 000 00 00.',
   },
   ui: {
     skipLink: 'Zum Inhalt springen',
@@ -27,9 +29,9 @@ export const de: SiteContent = {
   },
   notice: '',
   hero: {
-    eyebrow: 'Allgemeinmedizin · 1010 Wien',
-    headline: 'Ihre Hausärztin in der Innenstadt.',
-    lead: 'Vorsorge, akute Beschwerden und laufende Betreuung für die ganze Familie. Termine vergeben wir telefonisch.',
+    eyebrow: 'Ihre Branche · Ihr Ort',
+    headline: 'Was Sie anbieten, in einem Satz.',
+    lead: 'Hier steht in zwei Sätzen, für wen Ihr Betrieb da ist und was ihn ausmacht. Der Agent ersetzt diesen Text im ersten Gespräch durch Ihren eigenen.',
     callLabel: 'Anrufen',
     bookingLabel: 'Termin online buchen',
     directionsLabel: 'Anfahrt planen',
@@ -45,49 +47,41 @@ export const de: SiteContent = {
       sa: 'Samstag',
       su: 'Sonntag',
     },
-    note: 'Bitte vereinbaren Sie vorab telefonisch einen Termin.',
+    note: 'Termine außerhalb dieser Zeiten nach Vereinbarung.',
   },
   services: {
     heading: 'Leistungen',
-    intro: 'Wir sind Ihre erste Anlaufstelle bei gesundheitlichen Fragen und begleiten Sie über viele Jahre.',
+    intro: 'Die wichtigsten Leistungen Ihres Betriebs, jede mit einem Satz dazu, was Kunden davon haben.',
     items: [
       {
-        title: 'Vorsorgeuntersuchung',
-        text: 'Einmal im Jahr prüfen wir Blutwerte, Herz und Kreislauf und besprechen die Ergebnisse in Ruhe mit Ihnen.',
+        title: 'Erste Leistung',
+        text: 'Beschreiben Sie in einem Satz, was Kunden bei dieser Leistung bekommen.',
       },
       {
-        title: 'Akutsprechstunde',
-        text: 'Bei Fieber, Schmerzen oder Infekten erhalten Sie nach Anruf noch am selben Tag einen Termin.',
+        title: 'Zweite Leistung',
+        text: 'Nennen Sie das Ergebnis und nicht den Ablauf. Das Ergebnis lesen Besucher zuerst.',
       },
       {
-        title: 'Impfungen',
-        text: 'Wir prüfen Ihren Impfpass, beraten zu fälligen Auffrischungen und impfen direkt in der Ordination.',
+        title: 'Dritte Leistung',
+        text: 'Ein konkretes Beispiel sagt mehr als eine allgemeine Beschreibung.',
       },
       {
-        title: 'Chronische Erkrankungen',
-        text: 'Bei Bluthochdruck, Diabetes oder Asthma kontrollieren wir regelmäßig Ihre Werte und passen die Behandlung an.',
-      },
-      {
-        title: 'Hausbesuche',
-        text: 'Wenn Sie die Ordination nicht aufsuchen können, kommen wir nach Vereinbarung zu Ihnen nach Hause.',
-      },
-      {
-        title: 'Rezepte und Überweisungen',
-        text: 'Dauermedikamente und Überweisungen können Sie telefonisch bestellen und am nächsten Werktag abholen.',
+        title: 'Vierte Leistung',
+        text: 'Vier bis acht Leistungen reichen. Mehr liest auf einer Startseite niemand.',
       },
     ],
   },
   about: {
-    heading: 'Über die Ordination',
+    heading: 'Über uns',
     paragraphs: [
-      'Dr. Maria Muster führt die Ordination seit 2015. Nach dem Studium in Wien arbeitete sie mehrere Jahre in der Inneren Medizin eines Wiener Spitals.',
-      'Uns ist wichtig, dass Sie verstehen, was wir untersuchen und warum. Deshalb planen wir für jedes Gespräch genug Zeit ein.',
+      'Hier erzählen Sie, wer hinter dem Betrieb steht, seit wann es ihn gibt und was Sie anders machen als andere.',
+      'Ein zweiter Absatz ist Platz für Ihre Ausbildung, Ihr Team oder das, worauf Sie bei der Arbeit besonders achten.',
     ],
     facts: [
-      { label: 'Fachrichtung', value: 'Allgemeinmedizin' },
-      { label: 'Kassen', value: 'Alle Kassen' },
+      { label: 'Gegründet', value: '2015' },
+      { label: 'Team', value: '4 Personen' },
       { label: 'Sprachen', value: 'Deutsch, Englisch' },
-      { label: 'Zugang', value: 'Barrierefrei mit Lift' },
+      { label: 'Zugang', value: 'Barrierefrei' },
     ],
   },
   faq: {
@@ -95,19 +89,15 @@ export const de: SiteContent = {
     items: [
       {
         question: 'Brauche ich einen Termin?',
-        answer: 'Ja. Bitte rufen Sie vorher an, damit wir Wartezeiten kurz halten können. Akute Fälle nehmen wir am selben Tag an.',
+        answer: 'Hier steht Ihre Antwort. Die besten Fragen für diesen Bereich sind die, die Kunden am Telefon am häufigsten stellen.',
       },
       {
-        question: 'Was muss ich zum ersten Termin mitbringen?',
-        answer: 'Bringen Sie Ihre e-card, eine Liste Ihrer Medikamente und vorhandene Befunde mit.',
+        question: 'Was kostet das?',
+        answer: 'Nennen Sie Preise oder erklären Sie, wovon der Preis abhängt.',
       },
       {
-        question: 'Kann ich ein Rezept ohne Termin bekommen?',
-        answer: 'Für Dauermedikamente ja. Bestellen Sie das Rezept telefonisch, es liegt am nächsten Werktag für Sie bereit.',
-      },
-      {
-        question: 'Was tue ich außerhalb der Öffnungszeiten?',
-        answer: 'Bei einem lebensbedrohlichen Notfall wählen Sie 144. Die telefonische Gesundheitsberatung erreichen Sie rund um die Uhr unter 1450.',
+        question: 'Wie erreiche ich Sie am besten?',
+        answer: 'Schreiben Sie, ob Telefon, E-Mail oder ein Besuch der schnellste Weg ist.',
       },
     ],
   },
@@ -123,18 +113,16 @@ export const de: SiteContent = {
     imprint: {
       slug: 'impressum',
       title: 'Impressum',
-      description: 'Impressum und Offenlegung der Ordination Dr. Muster.',
+      description: 'Impressum und Offenlegung von Musterbetrieb.',
       sections: [
         {
           heading: 'Medieninhaber und Diensteanbieter',
-          paragraphs: [
-            'TODO: Vollständiger Name, Berufsbezeichnung, Anschrift, Telefonnummer und E-Mail-Adresse des Betriebs eintragen.',
-          ],
+          paragraphs: ['TODO: Vollständigen Namen oder Firmenwortlaut, Anschrift, Telefonnummer und E-Mail-Adresse eintragen.'],
         },
         {
-          heading: 'Berufsrechtliche Angaben',
+          heading: 'Unternehmensangaben',
           paragraphs: [
-            'TODO: Kammerzugehörigkeit, Aufsichtsbehörde, Berufsbezeichnung mit verleihendem Staat und anwendbare Berufsvorschriften eintragen. Bei Gewerbebetrieben stattdessen Firmenbuchnummer, Firmenbuchgericht, UID-Nummer und Gewerbebehörde.',
+            'TODO: Unternehmensgegenstand, Firmenbuchnummer und Firmenbuchgericht, UID-Nummer, zuständige Behörde sowie Kammer oder Berufsverband eintragen, soweit vorhanden.',
           ],
         },
         {
@@ -161,9 +149,7 @@ export const de: SiteContent = {
         },
         {
           heading: 'Kontaktaufnahme',
-          paragraphs: [
-            'TODO: Beschreiben, wie Anfragen per Telefon und E-Mail verarbeitet und wie lange sie aufbewahrt werden. Bitte senden Sie uns keine Gesundheitsdaten per E-Mail.',
-          ],
+          paragraphs: ['TODO: Beschreiben, wie Anfragen per Telefon und E-Mail verarbeitet und wie lange sie aufbewahrt werden.'],
         },
         {
           heading: 'Ihre Rechte',

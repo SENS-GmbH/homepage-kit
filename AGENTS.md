@@ -4,9 +4,7 @@ Dieses Repo ist die Website eines kleinen Betriebs. Ein KI-Agent pflegt sie im A
 
 ## Zuerst den Stand prüfen
 
-Lies `BRIEF.md`. Steht dort `Status: offen`, führe das Onboarding nach `docs/onboarding.md` durch, bevor du Inhalte änderst. Bei jedem anderen Status ist `BRIEF.md` deine Quelle für alles, was über den Betrieb bekannt ist.
-
-Ist der Betrieb eine Arztpraxis oder Ordination, lies zusätzlich `docs/branchen/ordination.md`.
+Lies `BRIEF.md`. Steht dort `Status: offen`, führe das Onboarding nach `docs/onboarding.md` durch, bevor du Inhalte änderst. Bei jedem anderen Status ist `BRIEF.md` deine Quelle für alles, was über den Betrieb und die gewünschte Gestaltung bekannt ist.
 
 ## Mit wem du sprichst
 
@@ -20,7 +18,24 @@ Was noch fehlt, trägst du als Platzhalter ein, der mit `TODO:` beginnt und sagt
 
 Fotos kommen von den Auftraggebern. Bis echte Fotos da sind, bleibt der Bereich ohne Bild.
 
-Vorbilder in `beispiele/vorbilder/` geben die Richtung vor: Aufbau, Tonfall, Farbstimmung. Text und Gestaltung dieser Website entstehen neu.
+## Beispiele und Material
+
+Mit Beispielen zeigen dir die Auftraggeber, wie die Website aussehen soll. Sie schicken sie dir im Chat, im Onboarding und jederzeit danach. Du legst alles im Repo ab und hältst fest, was du daraus ableitest, damit auch jeder spätere Agent weiß, wohin die Gestaltung gehen soll.
+
+Es gibt zwei Arten:
+
+- **Vorbilder** sind fremde Websites, als Link oder Bildschirmfoto. Sie geben die Richtung vor: Aufbau, Farbstimmung, Schrift, Tonfall. Text, Bilder und Gestaltung dieser Website entstehen neu.
+- **Eigenes Material** gehört den Auftraggebern: Logo, Fotos, vorhandene Texte. Es erscheint direkt auf der Website.
+
+Für jedes Beispiel, das ankommt:
+
+1. Lege es ab. Bildschirmfotos von Vorbildern nach `beispiele/vorbilder/`, Links nach `beispiele/vorbilder/links.md`, eigenes Material nach `beispiele/eigenes-material/`. Gib jeder Datei einen Namen, der sagt, was sie zeigt.
+2. Sieh es dir an. Öffne Bildschirmfotos als Bild und rufe Links auf.
+3. Halte in `BRIEF.md` unter „Gestaltung“ fest, was du daraus ableitest: Aufbau, Farben, Schrift, Tonfall und was den Auftraggebern daran gefällt. Wissen sie selbst nicht, was ihnen gefällt, beschreibe zwei Dinge, die dir auffallen, und frag, ob es das ist.
+4. Lege einen Commit an.
+5. Bestätige in einem Satz, was angekommen ist und was du daraus mitnimmst.
+
+Erledigt ist ein Beispiel, wenn es im Repo liegt und `BRIEF.md` sagt, was daraus folgt. Legt jemand Dateien selbst in den Ordner `beispiele/`, gelten dieselben Schritte ab Schritt 2.
 
 ## Ablauf jeder Änderung
 
@@ -45,7 +60,7 @@ Jede Änderung ist ein eigener Commit. Bittet jemand darum, etwas rückgängig z
 | Farben, Schriften, Abstände, Radien | `src/styles/tokens.css` |
 | Bilder für die Website | `src/assets/`, im Inhalt importieren, Astro verkleinert sie beim Build |
 | Material der Auftraggeber | `beispiele/` |
-| Einstellungen: Kurzname, Port, Domain, Server | `kit.env` |
+| Einstellungen: Kurzname, Skill-Name, Port, Domain, Server | `kit.env` |
 
 Neue Inhaltsfelder bekommen zuerst einen Typ in `src/content/types.ts`. Komponenten enthalten keine festen Texte.
 
@@ -68,7 +83,7 @@ Deutsche Texte sind idiomatisch und folgen der Rechtschreibung, mit `ä`, `ö`, 
 
 ## Datenschutz
 
-Die Website lädt alles vom eigenen Server: Schriften als npm-Paket, Bilder aus `src/assets/`, die Karte als Link. Sie setzt keine Cookies und enthält kein Formular.
+Die Website lädt alles vom eigenen Server: Schriften als npm-Paket, Bilder aus `src/assets/`, die Karte als Link. Sie setzt keine Cookies. Ein Formular hat sie nicht, weil dafür ein Dienst nötig wäre, der die Eingaben verarbeitet.
 
 Wünschen die Auftraggeber eine eingebettete Karte, ein Buchungs-Widget, Statistik oder ein Formular, erkläre vorher, dass dafür die Datenschutzerklärung angepasst und meist eine Einwilligung eingeholt werden muss. Baue es erst nach ihrer Bestätigung ein.
 
