@@ -1,0 +1,31 @@
+---
+name: {{SLUG}}
+description: Website im Repo {{REPO}} pflegen. Verwenden bei `/{{SLUG}}` oder wenn jemand Texte, Bilder, Öffnungszeiten oder Gestaltung der Website ändern, die Vorschau prüfen oder die Website veröffentlichen möchte.
+---
+
+# Website „{{SLUG}}“
+
+Das Repo liegt unter `{{REPO}}`. Dessen `AGENTS.md` enthält alle Regeln und den Ablauf. Lies sie zu Beginn jeder Aufgabe vollständig und folge ihr.
+
+## Adressen der Vorschau
+
+- Für die Auftraggeber, im Tailnet: {{PREVIEW_URL}}
+- Auf diesem Rechner: {{LOCAL_URL}}
+
+Nenne in Antworten die Tailnet-Adresse.
+
+## Was dieser Skill ergänzt
+
+- Führe alle Befehle im Ordner `{{REPO}}` aus.
+- Schickt jemand im Chat Dateien, lege sie im Repo unter `beispiele/` ab: Vorbilder nach `beispiele/vorbilder/`, eigene Logos, Fotos und Texte nach `beispiele/eigenes-material/`. Bestätige kurz, was angekommen ist.
+- Schickt jemand einen Link zu einer Website, die gefällt, trage ihn in `beispiele/vorbilder/links.md` ein und frag, was daran gefällt.
+- Meldet der Wächter-Job einen Ausfall der Vorschau, führe `npm run preview:check` aus und lies bei erneutem Fehler `npm run preview:logs`.
+
+## Typische Aufträge
+
+- `/{{SLUG}} Leg los`
+- `/{{SLUG}} Am Freitag haben wir ab jetzt bis 14 Uhr offen`
+- `/{{SLUG}} Wir sind von 3. bis 14. August auf Urlaub, Vertretung macht Dr. Beispiel`
+- `/{{SLUG}} Hier ist unser neues Teamfoto` (mit Bild)
+- `/{{SLUG}} Mach die letzte Änderung rückgängig`
+- `/{{SLUG}} Veröffentlichen`

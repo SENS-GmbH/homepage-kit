@@ -1,0 +1,101 @@
+---
+import { business, locales, type Locale } from '../content'
+
+interface Props {
+  locale: Locale
+}
+
+const t = locales[Astro.props.locale].contact
+const { address } = business
+---
+
+<section class="section contact on-dark" id="contact" aria-labelledby="contact-heading">
+  <div class="wrap grid">
+    <div>
+      <h2 id="contact-heading">{t.heading}</h2>
+      <p class="lead">{t.lead}</p>
+    </div>
+    <dl>
+      <div>
+        <dt>{t.phoneLabel}</dt>
+        <dd><a class="phone numbers" href={`tel:${business.phoneE164}`}>{business.phone}</a></dd>
+      </div>
+      <div>
+        <dt>{t.emailLabel}</dt>
+        <dd><a href={`mailto:${business.email}`}>{business.email}</a></dd>
+      </div>
+      <div>
+        <dt>{t.addressLabel}</dt>
+        <dd>
+          <address>
+            {address.street}<br />
+            {`${address.postalCode} ${address.city}`}
+          </address>
+          <a href={business.mapUrl}>{t.mapLinkLabel}</a>
+        </dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding-bottom: calc(var(--space-section) / 2);
+    background: var(--color-ink);
+    color: var(--color-on-ink);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .lead {
+    max-width: 26rem;
+    margin-top: var(--space-group);
+    color: var(--color-on-ink-muted);
+  }
+
+  dl div + div {
+    margin-top: var(--space-block);
+  }
+
+  dt {
+    margin-bottom: var(--space-tight);
+    color: var(--color-on-ink-muted);
+    font-size: var(--text-small);
+  }
+
+  dd {
+    font-size: 1.1875rem;
+  }
+
+  dd a {
+    display: inline-block;
+    padding-block: 0.2rem;
+  }
+
+  .phone {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 1.4rem + 2.6vw, 3rem);
+    font-weight: 750;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-decoration: none;
+  }
+
+  .phone:hover {
+    text-decoration: underline;
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  @media (max-width: 56rem) {
+    .grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

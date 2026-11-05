@@ -1,0 +1,179 @@
+---
+import { business, locales, weekdays, type Locale } from '../content'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+const t = locales[locale]
+const secondary = business.bookingUrl
+  ? { href: business.bookingUrl, label: t.hero.bookingLabel }
+  : { href: business.mapUrl, label: t.hero.directionsLabel }
+---
+
+<section class="hero">
+  <div class="wrap grid">
+    <div class="intro">
+      {t.notice && <p class="notice">{t.notice}</p>}
+      <p class="eyebrow">{t.hero.eyebrow}</p>
+      <h1>{t.hero.headline}</h1>
+      <p class="lead">{t.hero.lead}</p>
+      <div class="actions">
+        <a class="button numbers" href={`tel:${business.phoneE164}`}>{t.hero.callLabel}: {business.phone}</a>
+        <a class="button button-quiet" href={secondary.href}>{secondary.label}</a>
+      </div>
+    </div>
+
+    <div class="sign on-dark">
+      <h2>{t.hours.heading}</h2>
+      <table class="numbers">
+        <tbody>
+          {
+            weekdays.map((day) => (
+              <tr data-day={day}>
+                <th scope="row">
+                  {t.hours.days[day]}
+                  <span class="today" hidden>
+                    {t.ui.today}
+                  </span>
+                </th>
+                <td class:list={{ closed: business.hours[day].length === 0 }}>
+                  {business.hours[day].length === 0
+                    ? t.ui.closed
+                    : business.hours[day].map(([open, close]) => <span class="range">{`${open}–${close}`}</span>)}
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+      <p class="note">{t.hours.note}</p>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  // Marks today's row. Without JavaScript the table simply shows no mark.
+  ;(() => {
+    const keys = ['su', 'mo', 'tu', 'we', 'th', 'fr', 'sa']
+    const row = document.querySelector(`.sign [data-day="${keys[new Date().getDay()]}"]`)
+    if (!row) return
+    row.setAttribute('data-today', '')
+    row.querySelector('.today').hidden = false
+  })()
+</script>
+
+<style>
+  .hero {
+    padding-block: clamp(3rem, 2rem + 5vw, 6rem) var(--space-section);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .notice {
+    margin-bottom: var(--space-block);
+    padding: 0.85rem 1.1rem;
+    border-radius: var(--radius-control);
+    background: var(--color-plane);
+    font-weight: 700;
+  }
+
+  .eyebrow {
+    margin-bottom: var(--space-group);
+    color: var(--color-muted);
+    font-weight: 700;
+  }
+
+  .lead {
+    max-width: 34rem;
+    margin-top: 1.5rem;
+    color: var(--color-muted);
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-group);
+    margin-top: var(--space-block);
+  }
+
+  .sign {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: var(--radius-plane);
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+  }
+
+  .sign h2 {
+    margin-bottom: 1.25rem;
+    font-size: 1.6rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    padding-block: 0.55rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-on-accent) 28%, transparent);
+    font-weight: 400;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  td {
+    text-align: right;
+  }
+
+  .range {
+    display: block;
+  }
+
+  .closed {
+    opacity: 0.75;
+  }
+
+  [data-today] th,
+  [data-today] td {
+    font-weight: 700;
+  }
+
+  .today {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.05rem 0.5rem;
+    border-radius: 99px;
+    background: var(--color-mark);
+    color: var(--color-on-mark);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    vertical-align: 0.08em;
+  }
+
+  .today[hidden] {
+    display: none;
+  }
+
+  .note {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-on-accent) 28%, transparent);
+    font-size: var(--text-small);
+  }
+
+  @media (max-width: 56rem) {
+    .grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

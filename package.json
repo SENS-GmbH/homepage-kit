@@ -1,0 +1,33 @@
+{
+  "name": "homepage-kit",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "setup": "bash scripts/setup.sh",
+    "status": "bash scripts/doctor.sh",
+    "dev": "bash scripts/preview.sh dev",
+    "build": "astro build",
+    "check": "astro check && astro build && bash scripts/todos.sh",
+    "todos": "bash scripts/todos.sh",
+    "preview:check": "bash scripts/preview.sh check",
+    "preview:restart": "bash scripts/preview.sh restart",
+    "preview:logs": "bash scripts/preview.sh logs",
+    "share": "bash scripts/preview.sh share",
+    "deploy:setup": "bash scripts/deploy.sh setup",
+    "deploy": "bash scripts/deploy.sh push",
+    "uninstall": "bash scripts/setup.sh --uninstall"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/figtree": "^5.3.0",
+    "astro": "^7.4.6"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "^6.0.3"
+  }
+}

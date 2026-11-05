@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro'
+import { business, defaultLocale, locales, pathFor } from '../content'
+
+const t = locales[defaultLocale]
+---
+
+<Base locale={defaultLocale} title={`${t.ui.notFoundTitle} | ${business.name}`} description={t.ui.notFoundText}>
+  <section class="section">
+    <div class="wrap">
+      <h1>{t.ui.notFoundTitle}</h1>
+      <p>{t.ui.notFoundText}</p>
+      <a class="button" href={pathFor(defaultLocale, 'home')}>{t.ui.backHome}</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  h1 {
+    font-size: var(--text-h2);
+  }
+
+  p {
+    margin-block: var(--space-group) var(--space-block);
+    color: var(--color-muted);
+  }
+</style>

@@ -1,0 +1,85 @@
+---
+import { Image } from 'astro:assets'
+import { locales, type Locale } from '../content'
+
+interface Props {
+  locale: Locale
+}
+
+const t = locales[Astro.props.locale].about
+---
+
+<section class="section about" id="about" aria-labelledby="about-heading">
+  <div class="wrap grid">
+    <div class="text">
+      <h2 id="about-heading">{t.heading}</h2>
+      {t.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+    <div class="side">
+      {t.image && <Image class="photo" src={t.image.src} alt={t.image.alt} widths={[480, 800, 1200]} sizes="(max-width: 56rem) 100vw, 30rem" />}
+      <dl>
+        {
+          t.facts.map((fact) => (
+            <div>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--color-plane);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .text {
+    max-width: var(--width-text);
+  }
+
+  .text p {
+    margin-top: 1.25rem;
+    font-size: 1.1875rem;
+  }
+
+  .photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: var(--space-block);
+    border-radius: var(--radius-plane);
+  }
+
+  dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-group);
+    padding-block: 0.8rem;
+    border-top: 1px solid var(--color-ink);
+  }
+
+  dt {
+    color: var(--color-muted);
+  }
+
+  dd {
+    font-weight: 700;
+    text-align: right;
+  }
+
+  @media (max-width: 56rem) {
+    .grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>

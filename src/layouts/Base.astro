@@ -1,0 +1,97 @@
+---
+import '@fontsource-variable/bricolage-grotesque'
+import '@fontsource-variable/figtree'
+import '../styles/global.css'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+import { business, defaultLocale, localeCodes, locales, pathFor, weekdays, type Locale, type PageKind } from '../content'
+
+interface Props {
+  locale: Locale
+  /** Page that the language switch and hreflang links point to. Omit for pages without translations. */
+  kind?: PageKind
+  title: string
+  description: string
+  /** Extra structured data for this page. */
+  jsonLd?: Record<string, unknown>[]
+}
+
+const { locale, kind, title, description, jsonLd = [] } = Astro.props
+const t = locales[locale]
+const site = Astro.site ?? new URL(Astro.url.origin)
+const absolute = (path: string) => new URL(path, site).href
+
+const schemaDays = {
+  mo: 'Monday',
+  tu: 'Tuesday',
+  we: 'Wednesday',
+  th: 'Thursday',
+  fr: 'Friday',
+  sa: 'Saturday',
+  su: 'Sunday',
+}
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': business.schemaType,
+  name: business.name,
+  url: absolute(pathFor(defaultLocale, 'home')),
+  telephone: business.phoneE164,
+  email: business.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: business.address.street,
+    postalCode: business.address.postalCode,
+    addressLocality: business.address.city,
+    addressCountry: business.address.country,
+  },
+  openingHoursSpecification: weekdays.flatMap((day) =>
+    business.hours[day].map(([opens, closes]) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: schemaDays[day],
+      opens,
+      closes,
+    })),
+  ),
+}
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {business.demo && <meta name="robots" content="noindex" />}
+    {
+      kind && (
+        <>
+          <link rel="canonical" href={absolute(pathFor(locale, kind))} />
+          {localeCodes.length > 1 &&
+            localeCodes.map((code) => <link rel="alternate" hreflang={code} href={absolute(pathFor(code, kind))} />)}
+          {localeCodes.length > 1 && (
+            <link rel="alternate" hreflang="x-default" href={absolute(pathFor(defaultLocale, kind))} />
+          )}
+          <meta property="og:url" content={absolute(pathFor(locale, kind))} />
+        </>
+      )
+    }
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={locale} />
+    {[organization, ...jsonLd].map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.ui.skipLink}</a>
+    {business.demo && <p class="demo-notice">{t.ui.demoNotice}</p>}
+    <Header locale={locale} kind={kind} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

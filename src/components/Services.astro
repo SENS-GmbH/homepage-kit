@@ -1,0 +1,52 @@
+---
+import { locales, type Locale } from '../content'
+
+interface Props {
+  locale: Locale
+}
+
+const t = locales[Astro.props.locale].services
+---
+
+<section class="section" id="services" aria-labelledby="services-heading">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="services-heading">{t.heading}</h2>
+      <p>{t.intro}</p>
+    </div>
+    <ul class="list">
+      {
+        t.items.map((item) => (
+          <li>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding-top: 0;
+  }
+
+  .list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    gap: 0 var(--space-block);
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  li p {
+    margin-top: var(--space-tight);
+    color: var(--color-muted);
+  }
+</style>

@@ -1,0 +1,26 @@
+# With DOMAIN set, Caddy obtains and renews the HTTPS certificate itself.
+# Without it (Dockerfile, Coolify, any reverse proxy in front) it serves plain HTTP on port 80.
+{$DOMAIN::80} {
+	root * /srv
+	encode zstd gzip
+	file_server
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		X-Frame-Options DENY
+		Referrer-Policy strict-origin-when-cross-origin
+		Permissions-Policy "camera=(), geolocation=(), microphone=()"
+		-Server
+	}
+
+	# Astro puts a content hash into these file names, so they never change.
+	@hashed path /_astro/*
+	header @hashed Cache-Control "public, max-age=31536000, immutable"
+
+	handle_errors {
+		@notfound expression {err.status_code} == 404
+		rewrite @notfound /404.html
+		file_server
+	}
+}

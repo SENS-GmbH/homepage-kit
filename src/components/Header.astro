@@ -1,0 +1,140 @@
+---
+import { business, localeCodes, locales, pathFor, type Locale, type PageKind } from '../content'
+
+interface Props {
+  locale: Locale
+  kind?: PageKind
+}
+
+const { locale, kind } = Astro.props
+const t = locales[locale]
+const home = pathFor(locale, 'home')
+const sections = [
+  { id: 'services', label: t.nav.services },
+  { id: 'about', label: t.nav.about },
+  { id: 'faq', label: t.nav.faq },
+  { id: 'contact', label: t.nav.contact },
+]
+const otherLocales = localeCodes.filter((code) => code !== locale)
+---
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="name" href={home}>{business.name}</a>
+    <nav class="sections" aria-label={t.ui.mainNavLabel}>
+      <ul>
+        {
+          sections.map((section) => (
+            <li>
+              <a href={`${home}#${section.id}`}>{section.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    {
+      otherLocales.length > 0 && (
+        <nav class="languages" aria-label={t.ui.languageSwitchLabel}>
+          {otherLocales.map((code) => (
+            <a href={pathFor(code, kind ?? 'home')} hreflang={code} lang={code} aria-label={locales[code].languageName}>
+              {code.toUpperCase()}
+            </a>
+          ))}
+        </nav>
+      )
+    }
+    <a class="call numbers" href={`tel:${business.phoneE164}`}>
+      <span class="call-label">{t.hero.callLabel}</span>
+      {business.phone}
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-block);
+    min-height: 4.25rem;
+  }
+
+  .name {
+    margin-right: auto;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 750;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    text-decoration: none;
+  }
+
+  .sections ul {
+    display: flex;
+    gap: 1.75rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sections a,
+  .languages a {
+    display: inline-block;
+    padding-block: 0.6rem;
+    text-decoration: none;
+  }
+
+  .sections a:hover,
+  .languages a:hover {
+    text-decoration: underline;
+  }
+
+  .languages a {
+    font-weight: 700;
+  }
+
+  .call {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    min-height: 2.75rem;
+    padding: 0.4rem 1rem;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-control);
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .call:hover {
+    background: var(--color-ink);
+    color: var(--color-on-ink);
+  }
+
+  .call-label::after {
+    content: ':';
+  }
+
+  /* The page is a single scroll, so the section links are a shortcut, not a need. */
+  @media (max-width: 62rem) {
+    .sections {
+      display: none;
+    }
+
+    .bar {
+      gap: var(--space-group);
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .call-label {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,44 @@
+/* The look of the site. Components use these names only, never raw values.
+   Change the brand here: colours, fonts, spacing and corner radii. */
+:root {
+  /* Neutrals: cool sage paper with a green-black ink. */
+  --color-bg: #f2f5f1;
+  --color-plane: #dde8e1;
+  --color-ink: #13211d;
+  --color-muted: #4a5b55;
+  --color-line: #c5d3cc;
+
+  /* Signature colour: only the main button and the opening-hours sign. */
+  --color-accent: #17604f;
+  --color-accent-hover: #0f4a3d;
+  --color-on-accent: #ffffff;
+
+  /* Marks today's row on the sign. Nothing else. */
+  --color-mark: #f2c14e;
+  --color-on-mark: #13211d;
+
+  /* Text on the dark contact and footer area. */
+  --color-on-ink: #f2f5f1;
+  --color-on-ink-muted: #c5d3cc;
+
+  --font-display: 'Bricolage Grotesque Variable', 'Arial Narrow', system-ui, sans-serif;
+  --font-body: 'Figtree Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --text-hero: clamp(2.6rem, 1.5rem + 4.8vw, 4.75rem);
+  --text-h2: clamp(1.9rem, 1.4rem + 1.9vw, 2.75rem);
+  --text-h3: 1.25rem;
+  --text-body: 1.0625rem;
+  --text-small: 0.9375rem;
+
+  /* Rhythm: tight inside a group, generous between sections. */
+  --space-tight: 0.5rem;
+  --space-group: 1rem;
+  --space-block: 2.5rem;
+  --space-section: clamp(4.5rem, 3rem + 7vw, 8rem);
+
+  --radius-control: 8px;
+  --radius-plane: 20px;
+
+  --width-page: 72rem;
+  --width-text: 40rem;
+}
